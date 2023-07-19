@@ -1,7 +1,20 @@
-console.log(document.querySelector('#colorPicker').value);
-document.querySelector('#colorText').textContent = `カラーコード:${document.querySelector('#colorPicker').value}`;
-/*<h1>を代入('')に入れてしまうと文字列として表示されてしまう。 */
-/*HTMLタグも含めたいならinnerHTMLが使える
-document.querySelector('#colorText').innerHTML = '<h1>カラーコード</h1>'*/
-/*テンプレート文字列(テンプレートリテラル):最終的に表示したい内容をバックティック`で囲む。
-式や値、次節から登場する変数や定数など、文字列以外のコードは${}で囲む。 */
+const text = document.querySelector('#colorText');
+const color = document.querySelector('#colorPicker');
+
+//カラーピッカーを操作した時の一連の動作
+const colorBg = () => {
+    //選択した色を背景色に設定
+    document.body.style.backgroundColor = color .Value;
+
+    //カラーコードを表示
+    if (color.value === '#ffffff'){
+        text.textContent = 'カラーコード: ${color.value} (white)';
+    } else if (color.value === '#000000'){
+        text.textContent = 'カラーコード: ${color.value}(black)';
+    } else{
+        text.textContent = 'カラーコード: ${color.value}';
+    }
+}
+
+//カラーピッカーが変更されたら colorBg を発動させる
+color.addEventListener('input',colorBg);
